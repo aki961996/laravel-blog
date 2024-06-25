@@ -1,15 +1,16 @@
 @component('mail::message')
 
-# Welcome to {{ config('app.name') }}, {{ $user->name }}!
+# Welcome to , {{ $user->name }}!
 
-Thank you for registering on our blog. We're excited to have you join our community.
+@component('mail::button', ['url' => url('verify/' . $user->remember_token)])
+Verify your email
+@endcomponent
+<p>In case you have issues please contact our contact us.</p>
 
+Happy reading and writing!
 @component('mail::button', ['url' => url('/')])
 Visit Our Blog
 @endcomponent
-
-Happy reading and writing!
-
 Best regards,<br>
 {{ config('app.name') }} Team
 

@@ -40,7 +40,22 @@ class AuthController extends Controller
         $user->save();
 
         Mail::to($user->email)->send(new RegisterMail($user));
-        
-        return redirect()->route('login')->with('status', 'User created successfully.');
+        return redirect()->route('login')->with('status', 'Your account created successfully and Verify your email address');
+    }
+
+    public function verify($token)
+    {
+        $remember_token = $token;
+        $user = User::where('remember_token', $remember_token)->first();
+
+        if (!empty($user)) {
+            //$user->email_verified_at = date('Y-m-d H:i:s');
+            $user->email_verified_at = now();
+            $user->remember_token = Str::random(40);
+            $user->save();
+            return redirect()->route('login')->with('status', 'Your account verified successfully');
+        } else {
+            abort(404);
+        }
     }
 }
