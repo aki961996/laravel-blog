@@ -10,9 +10,9 @@
                     <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
 
                         <div class="d-flex justify-content-center py-4">
-                            <a href="index.html" class="logo d-flex align-items-center w-auto">
+                            <a href="{{route('register')}}" class="logo d-flex align-items-center w-auto">
                                 <img src="{{asset('public//img/logo.png')}}" alt="">
-                                <span class="d-none d-lg-block"></span>
+                                <span class="d-none d-lg-block">Blog</span>
                             </a>
                         </div><!-- End Logo -->
 
@@ -29,26 +29,26 @@
                                     novalidate>
                                     @csrf
                                     <div class="col-12">
-                                        <label class="form-label"> Name</label>
-                                        <input type="text" name="name" class="form-control" id="yourName"
+                                        <label class="form-label">Name</label>
+                                        <input type="text" name="name" class="form-control" id="name"
                                             value="{{old('name')}}">
-                                        <div class="invalid-feedback">Please, enter your name!</div>
+                                        <div style="color: red">{{$errors->first('name')}}</div>
                                     </div>
 
                                     <div class="col-12">
                                         <label class="form-label"> Email</label>
-                                        <input type="email" name="email" class="form-control" id="yourEmail"
+                                        <input type="email" name="email" class="form-control" id="email"
                                             value="{{old('email')}}">
-                                        <div class="invalid-feedback">Please enter a valid Email adddress!</div>
+                                        <div style="color: red">{{$errors->first('email')}}</div>
                                     </div>
 
 
 
                                     <div class="col-12">
                                         <label class="form-label">Password</label>
-                                        <input type="password" name="password" class="form-control" id="yourPassword"
+                                        <input type="password" name="password" class="form-control" id="password"
                                             value="{{old('password')}}">
-                                        <div class="invalid-feedback">Please enter your password!</div>
+                                        <div style="color: red">{{$errors->first('password')}}</div>
                                     </div>
 
                                     <div class="col-12">
