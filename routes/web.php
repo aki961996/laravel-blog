@@ -16,8 +16,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
 Route::controller(HomeController::class)->group(function () {
     Route::get('/', 'index')->name('index');
+    // Route::get('/mine', 'mine')->name('mine');
 });
 
 Route::controller(AuthController::class)->group(function () {
