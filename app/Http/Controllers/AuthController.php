@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\RegisterMail;
+
 
 class AuthController extends Controller
 {
@@ -32,7 +36,11 @@ class AuthController extends Controller
         $user->name = trim($request->name);
         $user->email = trim($request->email);
         $user->password = Hash::make(trim($request->password));
+        $user->remember_token = Str::random(10);
         $user->save();
+
+        Mail::to($user->email)->send(new RegisterMail($user));
+        
         return redirect()->route('login')->with('status', 'User created successfully.');
     }
 }
