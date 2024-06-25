@@ -32,19 +32,25 @@
                                 @endsession
                                 {{-- message --}}
 
-                                <form class="row g-3 needs-validation" novalidate>
-
+                                {{-- error msg --}}
+                                @session('error')
+                                <div class="alert alert-danger" role="alert">
+                                    {{$value}}
+                                </div>
+                                @endsession
+                                {{-- erromsg end --}}
+                                <form action="{{route('auth_login')}}" method="POST" class="row g-3 needs-validation">
+                                    @csrf
                                     <div class="col-12">
-                                        <label for="yourEmail" class="form-label">Your Email</label>
-                                        <input type="email" name="email" class="form-control" id="yourEmail" required>
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="email" name="email" class="form-control" id="email">
                                         <div class="invalid-feedback">Please enter a valid Email adddress!</div>
                                     </div>
 
 
                                     <div class="col-12">
-                                        <label for="yourPassword" class="form-label">Password</label>
-                                        <input type="password" name="password" class="form-control" id="yourPassword"
-                                            required>
+                                        <label for="password" class="form-label">Password</label>
+                                        <input type="password" name="password" class="form-control" id="password">
                                         <div class="invalid-feedback">Please enter your password!</div>
                                     </div>
 

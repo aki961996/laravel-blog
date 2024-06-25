@@ -25,9 +25,14 @@ Route::controller(HomeController::class)->group(function () {
 
 Route::controller(AuthController::class)->group(function () {
     Route::get('login', 'login')->name('login');
-    Route::get('register', 'register')->name('register');
-    Route::get('forget_password', 'forget_pass')->name('forget_password');
-    Route::post('register', 'create_user')->name('create_user');
+    Route::post('login', 'auth_login')->name('auth_login');
 
+    Route::get('register', 'register')->name('register');
+    Route::post('register', 'create_user')->name('create_user');
+    
+    Route::get('forget_password', 'forget_pass')->name('forget_password');
     Route::get('verify/{token}', 'verify');
+
+  
+   
 });
