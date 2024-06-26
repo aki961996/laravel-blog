@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -20,7 +21,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::controller(HomeController::class)->group(function () {
     Route::get('/', 'index')->name('index');
-    // Route::get('/mine', 'mine')->name('mine');
 });
 
 Route::controller(AuthController::class)->group(function () {
@@ -29,10 +29,18 @@ Route::controller(AuthController::class)->group(function () {
 
     Route::get('register', 'register')->name('register');
     Route::post('register', 'create_user')->name('create_user');
-    
-    Route::get('forget_password', 'forget_pass')->name('forget_password');
-    Route::get('verify/{token}', 'verify');
 
-  
-   
+    Route::get('forget_password', 'forget_pass')->name('forget_password');
+    Route::post('forget_password', 'forget_password_create')->name('forget_password_create');
+
+    Route::get('reset-password/{token}', 'reset_password');
+    Route::post('reset-password/{token}', 'rest_password_post')->name('rest_password_post');
+
+
+    Route::get('verify/{token}', 'verify');
+});
+
+Route::controller(DashboardController::class)->group(function () {
+
+    Route::get('panel/dashboard', 'dashboard')->name('dashboard');
 });
